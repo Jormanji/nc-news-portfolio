@@ -12,7 +12,7 @@ export default function ArticleCard ({article}) {
             <p>Comment count: {comment_count}</p>
             <p>Votes: {votes}</p>
             <button>Upvote</button>
-            <Link to={`/articles/${article_id}`}>See comments</Link>
+            <Link to={`/articles/${article_id}`}>View article and comments</Link>
         </div>
     )
 }
