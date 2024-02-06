@@ -49,3 +49,20 @@
   color: black;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+.articleCardExpanded {
+  border: 9px inset #1C6EA4;
+  border-radius: 40px 40px 40px 40px;
+  background-color: #f1b419;
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.commentCard {
+  border: 5px outset #264653;
+  border-radius: 0px 0px 40px 0px;
+  margin: 15px;
+  background-color: #e9c46a;
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
