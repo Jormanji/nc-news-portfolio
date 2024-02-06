@@ -21,9 +21,11 @@ export default function ArticleList () {
     }, [])
 
 
+    if (loading){
+        return <p>Loading...</p>
+    }
+
     return (
-        <div>
-            {loading ? (<p>Loading...</p>) :
         <div>
             {articlesList.map((article) => {
                 return(
@@ -31,8 +33,5 @@ export default function ArticleList () {
                 )
             })}
         </div>
-        }
-        </div>
     )
-
 }
