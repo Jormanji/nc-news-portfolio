@@ -10,6 +10,7 @@ export default function IndividualArticles (){
     const match = useMatch("/articles/:articleId")
     const articleId = match.params.articleId
     const [article, setArticle] = useState(null)
+    const [comments, setComments] = useState([])
 
     useEffect(() => {
         axios.get(`https://nc-news-portfolio-site.onrender.com/api/articles/${articleId}`)
@@ -19,18 +20,23 @@ export default function IndividualArticles (){
         .catch((err) => {
             console.log(err)
         })
+        axios.get(`https://nc-news-portfolio-site.onrender.com/api/articles/${articleId}/comments`)
+        .then((response) => {
+            setComments(response.data.comments)
+        })
         .catch((err) => {
             console.log(err)
         })
     }, [articleId])
 
     if (!article) {
-        return <div>Searching for the lost Arkticle</div>;
+        return <div>Retrieving the article</div>;
     }
 
     return (
         <div>
             <ArticleCardExpanded article={article}/>
+            <Comments comments={comments}/>
         </div>
     )
 }
