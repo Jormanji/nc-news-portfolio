@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useMatch } from "react-router-dom"
 import axios from "axios"
-import { useParams } from "react-router-dom"
 import ArticleCardExpanded from "./ArticleCardExpanded"
 import Comments from "./Comments"
 import api from "./Api"
-import PostComment from "./PostComment"
+import AddComment from "./AddComment"
 
 
 export default function IndividualArticles (){
@@ -13,6 +12,7 @@ export default function IndividualArticles (){
     const articleId = match.params.articleId
     const [article, setArticle] = useState(null)
     const [comments, setComments] = useState([])
+    const [loading, setLoading] = useState(true)
 
 
 
@@ -43,7 +43,7 @@ export default function IndividualArticles (){
     return (
         <div>
             <ArticleCardExpanded article={article}/>
-            <PostComment />
+            <AddComment articleId={articleId}/>
             <Comments comments={comments}/>
         </div>
     )
