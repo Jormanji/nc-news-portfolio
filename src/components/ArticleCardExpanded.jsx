@@ -12,15 +12,15 @@ export default function ArticleCardExpanded ({article}) {
         setLocalVotes(newVotes);
         setError(null)
 
-        api.patch(`/articles/${article.article_id}`, { inc_votes: voteChange })
+        api.patch(`/articles/${article.article_id}`, { inc_votes: voteType === 'upvote' ? 1 : -1 })
             .then(() => {
-         })
-        .catch((err) => {
-        setLocalVotes(article.votes);
-        setError("Vote attempt failed");
-        console.log(err);
-      });
-  };
+            })
+            .catch((err) => {
+                setLocalVotes(article.votes);
+                setError("Vote attempt failed")
+                console.log(err);
+            });
+    };
 
 
     return (

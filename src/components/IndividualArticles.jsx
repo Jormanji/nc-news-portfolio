@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import ArticleCardExpanded from "./ArticleCardExpanded"
 import Comments from "./Comments"
 import api from "./Api"
+import PostComment from "./PostComment"
 
 
 export default function IndividualArticles (){
@@ -42,6 +43,7 @@ export default function IndividualArticles (){
     return (
         <div>
             <ArticleCardExpanded article={article}/>
+            <PostComment />
             <Comments comments={comments}/>
         </div>
     )
