@@ -11,7 +11,6 @@ export default function ArticleCard ({article}) {
             <p>Date Posted: {created_at}</p>
             <p>Comment count: {comment_count}</p>
             <p>Votes: {votes}</p>
-            <button>Upvote</button>
             <Link to={`/articles/${article_id}`}>View article and comments</Link>
         </div>
     )
