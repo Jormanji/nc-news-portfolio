@@ -3,7 +3,7 @@ import axios from "axios";
 import api from "./Api";
 import { UserContext } from "./Users";
 
-const AddComment = ({ articleId }) => {
+const AddComment = ({ articleId, onAddComment }) => {
   const { user } = useContext(UserContext);
   const [commentText, setCommentText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,16 @@ const AddComment = ({ articleId }) => {
     }
 
     setLoading(true);
-    console.log(articleId)
+    
+
+    const optimisticRender = {
+      username: user.username,
+      body: commentText,
+      comment_created_at: new Date().toISOString(),
+      votes: 0
+    };
+    onAddComment(optimisticRender);
+
     api.post(`/articles/${articleId}/comments`, {
         username: user.username,
         body: commentText,
