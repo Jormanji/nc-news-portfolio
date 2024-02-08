@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { useMatch } from "react-router-dom"
-import axios from "axios"
 import ArticleCardExpanded from "./ArticleCardExpanded"
 import Comments from "./Comments"
 import api from "./Api"
@@ -36,6 +35,12 @@ export default function IndividualArticles (){
           });
       }, [articleId]);
 
+      const addCommentOptimistically = (newComment) => {
+        console.log(newComment)
+        setComments((prevComments) => [newComment, ...prevComments]);
+      };
+
+
     if (!article) {
         return <div>Retrieving the article</div>;
     }
@@ -43,7 +48,7 @@ export default function IndividualArticles (){
     return (
         <div>
             <ArticleCardExpanded article={article}/>
-            <AddComment articleId={articleId}/>
+            <AddComment articleId={articleId} onAddComment={addCommentOptimistically}/>
             <Comments comments={comments}/>
         </div>
     )

@@ -3,12 +3,12 @@ import CommentCard from "./CommentCard"
 import AddComment from "./AddComment"
 
 
-export default function Comments ({comments}) {
-    return (
-        <div>
-            {comments.map(comment => (
-                <CommentCard key={comment.comment_id} comment={comment} />
-            ))}
-        </div>
-    );
+export default function Comments({ comments }) {
+  return (
+    <div>
+      {comments.map((comment, index) => (
+        <CommentCard key={index} comment={comment} />
+      ))}
+    </div>
+  );
 }
