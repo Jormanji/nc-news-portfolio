@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState({username: "Jormanji"})
+    const [user, setUser] = useState({username: "jessjelly"})
 
 
 return (

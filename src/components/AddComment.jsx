@@ -29,6 +29,7 @@ const AddComment = ({ articleId }) => {
         setLoading(false);
       })
       .catch((error) => {
+        console.log(error)
         setError("Failed to post comment. Please try again later.");
         setLoading(false);
       });
