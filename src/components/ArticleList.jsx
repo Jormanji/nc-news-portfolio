@@ -12,7 +12,6 @@ export default function ArticleList () {
 
 
   useEffect(() => {
-    const fetchArticles = () => {
       api.get("/articles")
         .then((response) => {
           let filteredArticles = response.data.articles
@@ -25,9 +24,7 @@ export default function ArticleList () {
           .catch((error) => {
             console.log("Error fetching articles:", error)
           })
-      }
       
-      fetchArticles()
     }, [topic])
 
 
