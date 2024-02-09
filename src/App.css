@@ -66,3 +66,12 @@
   color: black;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+.topicCard{
+  border: 5px outset #264653;
+  border-radius: 0px 0px 40px 0px;
+  margin: 15px;
+  background-color: #e9c46a;
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}

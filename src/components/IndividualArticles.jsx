@@ -36,10 +36,14 @@ export default function IndividualArticles (){
       }, [articleId]);
 
       const addCommentOptimistically = (newComment) => {
-        console.log(newComment)
         setComments((prevComments) => [newComment, ...prevComments]);
       };
 
+      const deleteCommentOptimistically = (deletedCommentId) => {
+        setComments((prevComments) =>
+            prevComments.filter((comment) => comment.comment_id !== deletedCommentId)
+        );
+      }
 
     if (!article) {
         return <div>Retrieving the article</div>;
@@ -49,7 +53,7 @@ export default function IndividualArticles (){
         <div>
             <ArticleCardExpanded article={article}/>
             <AddComment articleId={articleId} onAddComment={addCommentOptimistically}/>
-            <Comments comments={comments}/>
+            <Comments comments={comments} onDeleteComment={deleteCommentOptimistically}/>
         </div>
     )
 }
