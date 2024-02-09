@@ -13,6 +13,7 @@ export default function MainRouter () {
             <Route path="/articles" element={<ArticleList />} />
             <Route path="/topics" element={<Topics />} />
             <Route path="/articles/:article_id" element={<IndividualArticles />} />
+            <Route path="/topics/:topic" element={<ArticleList />} />
         </Routes>
     )
 }
