@@ -15,23 +15,39 @@ export default function ArticleList () {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    setSearchParams({ sort_by: sortBy, order: order })
-    
+      setLoading(true);
       api.get(`/articles`)
-        .then((response) => {
-          let filteredArticles = response.data.articles
+        .then(response => {
+          let fetchedArticles = response.data.articles;
           if (topic) {
-            filteredArticles = filteredArticles.filter(article => article.topic === topic)
+            fetchedArticles = fetchedArticles.filter(article => article.topic === topic);
           }
-            setArticlesList(filteredArticles)
-            setLoading(false)
-          })
-          .catch((error) => {
-            console.log("Error fetching articles:", error)
-            setLoading(false)
-          })
-      
-    }, [topic, sortBy, order, setSearchParams])
+          return fetchedArticles;
+        })
+        .then(articles => sortArticles(articles, sortBy, order))
+        .then(sortedArticles => {
+          setArticlesList(sortedArticles);
+          setLoading(false);
+        })
+        .catch(error => {
+          console.log("Error fetching articles:", error);
+          setLoading(false);
+        });
+  }, [topic, sortBy, order])
+
+  const sortArticles = (articles, sortBy, order) => {
+    const sortedArticles = articles.sort((a, b) => {
+      if (sortBy === "date") {
+        return order === "asc" ? new Date(a.created_at) - new Date(b.created_at) : new Date(b.created_at) - new Date(a.created_at);
+      } else if (sortBy === "comment_count") {
+        return order === "asc" ? a.comment_count - b.comment_count : b.comment_count - a.comment_count;
+      } else if (sortBy === "votes") {
+        return order === "asc" ? a.votes - b.votes : b.votes - a.votes;
+      }
+      return 0;
+    });
+    return sortedArticles;
+  };
 
   const handleSortByChange = (event) => {
       setSortBy(event.target.value);
@@ -39,11 +55,6 @@ export default function ArticleList () {
   
   const handleOrderChange = (event) => {
       setOrder(event.target.value);
-    };
-
-  const handleApplySort = () => {
-      setSearchParams({ sort_by: sortBy, order: order })
-      console.log(searchParams.toString());
     };
 
   const handleTopicClick = (selectedTopic) => {
